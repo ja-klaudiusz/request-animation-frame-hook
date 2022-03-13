@@ -1,6 +1,6 @@
 # useRequestAnimationFrame React Hook
 
-> useRequestAnimationFrame React Hook with start, stop and pause actions.
+> useRequestAnimationFrame React Hook with start, stop and pause actions and Window.requestAnimationFrame() in the background.
 
 [![NPM](https://img.shields.io/npm/v/request-animation-frame-hook.svg)](https://www.npmjs.com/package/request-animation-frame-hook) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 

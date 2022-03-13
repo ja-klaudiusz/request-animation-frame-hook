@@ -1,7 +1,7 @@
 {
   "name": "request-animation-frame-hook",
   "version": "1.0.0",
-  "description": "useRequestAnimationFrame React Hook with start, stop and pause actions.",
+  "description": "useRequestAnimationFrame React Hook with start, stop and pause actions and Window.requestAnimationFrame() in the background.",
   "author": "ja-klaudiusz",
   "license": "MIT",
   "repository": "ja-klaudiusz/request-animation-frame-hook",
@@ -11,5 +11,16 @@
   },
   "devDependencies": {
     "rollup": "^2.67.3"
-  }
+  },
+  "keywords": [
+    "react",
+    "requestAnimationFrame",
+    "timer",
+    "counter",
+    "framer",
+    "react-hook",
+    "hook",
+    "animation",
+    "loop"
+  ]
 }
