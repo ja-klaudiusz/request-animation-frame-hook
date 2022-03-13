@@ -1,0 +1,15 @@
+{
+  "name": "request-animation-frame-hook",
+  "version": "1.0.0",
+  "description": "useRequestAnimationFrame React Hook with start, stop and pause actions.",
+  "author": "ja-klaudiusz",
+  "license": "MIT",
+  "repository": "ja-klaudiusz/request-animation-frame-hook",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rollup src/index.js --file dist/index.js --format cjs"
+  },
+  "devDependencies": {
+    "rollup": "^2.67.3"
+  }
+}
