@@ -1,6 +1,6 @@
 # useRequestAnimationFrame React Hook
 
-> useRequestAnimationFrame React Hook with start, stop and pause actions and Window.requestAnimationFrame() in the background.
+> useRequestAnimationFrame React Hook with start, stop, pause actions and Window.requestAnimationFrame() in the background.
 
 [![NPM](https://img.shields.io/npm/v/request-animation-frame-hook.svg)](https://www.npmjs.com/package/request-animation-frame-hook) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -23,11 +23,11 @@ const autoStopCb = () => {
 const stopValue = 2250;
 const stopAfterTime = true;
 const clearTimerDelay = 1000;
-const stopInfo = [stopValue, stopAfterTime, clearTimerDelay, autoStopCb];
-const [start, pause, setStart, setStop] = useRequestAnimationFrame(
-  cb,
-  stopInfo
-);
+const params = {
+  stopRules: [stopValue, stopAfterTime, clearTimerDelay],
+  autoStopCb,
+};
+const [start, pause, setStart, setStop] = useRequestAnimationFrame(cb, params);
 ```
 
 |                 | type      | Required | Description                                                                                                                                                                                                 |
@@ -40,7 +40,7 @@ const [start, pause, setStart, setStop] = useRequestAnimationFrame(
 | setStop         | `void`    |          | method stopping timer loop                                                                                                                                                                                  |
 | start           | `boolean` |          | current timer start state                                                                                                                                                                                   |
 | pause           | `boolean` |          | current timer pause state                                                                                                                                                                                   |
-| stopInfo        | `array`   |          | stop info array                                                                                                                                                                                             |
+| params          | `object`  |          | stop params array                                                                                                                                                                                           |
 | stopValue       | `number`  |          | depends on `stopAfterTime` takes the value of time in milliseconds or number of refresh counts (returned in `counter` variable)                                                                             |
 | stopAfterTime   | `boolean` |          | if `stopAfterTime = false` timer will stop after miliseconds defined in `stopValue`. if `stopAfterTime = true` timer will stop after refresh counts (returned in `counter` variable) defined in `stopValue` |
 | clearTimerDelay | `number`  |          | delay in milliseconds after which timer will reset                                                                                                                                                          |
@@ -76,9 +76,8 @@ const Example = () => {
       setFps(data.fps);
       setCounter(data.counter);
     },
-    [100, true, 2000, autoStopCb]
+    { stopRules: [100, true, 2000], autoStopCb }
   );
-
   return (
     <div className="App">
       <h1>useRequestAnimationFrame React Hook</h1>
@@ -113,7 +112,7 @@ const Example = () => {
 
 ## Demo
 
-Try it on CodeSandbox [RequestAnimationFrame React Hook](https://codesandbox.io/s/requestanimationframe-react-hook-v-1-0-0-forked-shmkje?file=/src/App.js)
+Try it on CodeSandbox [RequestAnimationFrame React Hook](https://codesandbox.io/s/userequestanimationframe-react-hook-1-1-0-92u4sw?file=/src/App.js)
 
 ## License
 

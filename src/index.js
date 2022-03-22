@@ -8,7 +8,8 @@ const timeDefault = {
   d: 0,
 };
 
-export const useRequestAnimationFrame = (cb, stopInfo) => {
+export const useRequestAnimationFrame = (cb, params) => {
+  const stopRules = params?.stopRules || [];
   const [stop, setStop] = useState(false);
   const [start, setStart] = useState(false);
   const timeRef = useRef(timeDefault);
@@ -39,20 +40,20 @@ export const useRequestAnimationFrame = (cb, stopInfo) => {
   };
 
   const delayStop = () => {
-    const delayTime = stopInfo[2];
+    const delayTime = stopRules[2];
 
     if (delayTime) {
       actionStart();
       setTimeout(() => {
         actionStop();
-        if (stopInfo[3]) {
-          stopInfo[3]();
+        if (params.autoStopCb) {
+          params.autoStopCb();
         }
       }, delayTime);
     } else {
       actionStop();
-      if (stopInfo[3]) {
-        stopInfo[3]();
+      if (params.autoStopCb) {
+        params.autoStopCb();
       }
     }
   };
@@ -90,7 +91,7 @@ export const useRequestAnimationFrame = (cb, stopInfo) => {
       d: Math.floor(ms / 1000 / 3600 / 24),
     };
 
-    if (!pause && !!stopInfo && !stopInfo[1] && ms >= stopInfo[0]) {
+    if (!pause && !stopRules[1] && ms >= stopRules[0]) {
       delayStop();
       return;
     }
@@ -103,7 +104,7 @@ export const useRequestAnimationFrame = (cb, stopInfo) => {
         ...cbData,
       });
 
-      if (stopInfo[1] && stopInfo[0] === counterTimeRef.current) {
+      if (stopRules[1] && stopRules[0] === counterTimeRef.current) {
         delayStop();
         return;
       }
