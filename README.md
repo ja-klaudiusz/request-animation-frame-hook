@@ -39,7 +39,7 @@ const [start, pause, setStart, setStop] = useRequestAnimationFrame(
 | pause           | `boolean` |          | current timer pause state                                                                                                                                                                                   |
 | stopInfo        | `array`   |          | stop info array                                                                                                                                                                                             |
 | stopValue       | `number`  |          | depends on `stopAfterTime` takes the value of time in milliseconds or number of refresh counts (returned in `counter` variable)                                                                             |
-| stopAfterTime   | `boolean` |          | if `stopAfterTime = true` timer will stop after miliseconds defined in `stopValue`. if `stopAfterTime = false` timer will stop after refresh counts (returned in `counter` variable) defined in `stopValue` |
+| stopAfterTime   | `boolean` |          | if `stopAfterTime = false` timer will stop after miliseconds defined in `stopValue`. if `stopAfterTime = true` timer will stop after refresh counts (returned in `counter` variable) defined in `stopValue` |
 | clearTimerDelay | `number`  |          | delay in milliseconds after which timer will reset                                                                                                                                                          |
 
 ## Usage
