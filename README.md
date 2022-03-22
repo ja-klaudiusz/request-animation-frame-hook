@@ -17,10 +17,13 @@ const cb = (data) => {
   const { time, fps, counter, setStop } = data;
   const { ms, s, m, h, d } = time;
 };
+const autoStopCb = () => {
+  console.log("auto stop callback");
+};
 const stopValue = 2250;
 const stopAfterTime = true;
 const clearTimerDelay = 1000;
-const stopInfo = [stopValue, stopAfterTime, clearTimerDelay];
+const stopInfo = [stopValue, stopAfterTime, clearTimerDelay, autoStopCb];
 const [start, pause, setStart, setStop] = useRequestAnimationFrame(
   cb,
   stopInfo
@@ -41,6 +44,7 @@ const [start, pause, setStart, setStop] = useRequestAnimationFrame(
 | stopValue       | `number`  |          | depends on `stopAfterTime` takes the value of time in milliseconds or number of refresh counts (returned in `counter` variable)                                                                             |
 | stopAfterTime   | `boolean` |          | if `stopAfterTime = false` timer will stop after miliseconds defined in `stopValue`. if `stopAfterTime = true` timer will stop after refresh counts (returned in `counter` variable) defined in `stopValue` |
 | clearTimerDelay | `number`  |          | delay in milliseconds after which timer will reset                                                                                                                                                          |
+| autoStopCb      | `void`    |          | callback after auto stop                                                                                                                                                                                    |
 
 ## Usage
 
@@ -62,13 +66,17 @@ const Example = () => {
   const [fps, setFps] = useState(0);
   const [counter, setCounter] = useState(0);
 
+  const autoStopCb = () => {
+    console.log("auto stop callback");
+  };
+
   const [start, pause, setStart, setStop] = useRequestAnimationFrame(
     (data) => {
       setTimer(data.time);
       setFps(data.fps);
       setCounter(data.counter);
     },
-    [100, true, 2000]
+    [100, true, 2000, autoStopCb]
   );
 
   return (

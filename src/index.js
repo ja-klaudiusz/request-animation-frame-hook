@@ -45,9 +45,15 @@ export const useRequestAnimationFrame = (cb, stopInfo) => {
       actionStart();
       setTimeout(() => {
         actionStop();
+        if (stopInfo[3]) {
+          stopInfo[3]();
+        }
       }, delayTime);
     } else {
       actionStop();
+      if (stopInfo[3]) {
+        stopInfo[3]();
+      }
     }
   };
 
